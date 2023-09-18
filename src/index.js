@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+//import './index.css';
+
+//Alerta: malapráctica: import App,{reducer} from './App';s
+import App,{reducer, asyncMiddelware} from './App';
 import reportWebVitals from './reportWebVitals';
+import {createStore, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux'
+
+const store=createStore(reducer,applyMiddleware(asyncMiddelware))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
+    
     <App />
+    </Provider>
   </React.StrictMode>
 );
 
